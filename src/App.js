@@ -27,7 +27,9 @@ function App() {
   }, [])
 
   const loadUsers = async () => {
-    const response = await axios.get(api);
+    const devEnv = process.env.NODE_ENV !== "production";
+    const { REACT_APP_DEV_URL, REACT_APP_PROD_URL } = process.env;
+    const response = await axios.get(`${devEnv ? REACT_APP_DEV_URL : REACT_APP_PROD_URL}`);
     setData(response.data);
   };
 
@@ -38,7 +40,9 @@ function App() {
 
   const handleDelete = async (id) => {
     if (window.confirm("Are you wanted to delete that user ?")) {
-      axios.delete(`${api}/${id}`);
+      const devEnv = process.env.NODE_ENV !== "production";
+      const { REACT_APP_DEV_URL, REACT_APP_PROD_URL } = process.env;
+      axios.delete(`${devEnv ? REACT_APP_DEV_URL : REACT_APP_PROD_URL}/${id}`);
       toast.success("Deleted Successfully");
       setTimeout(() => loadUsers(), 500);
     }
@@ -59,13 +63,18 @@ function App() {
     }
     else {
       if (!editMode) {
-        axios.post(api, state);
+        const devEnv = process.env.NODE_ENV !== "production";
+        const { REACT_APP_DEV_URL, REACT_APP_PROD_URL } = process.env;
+        
+        axios.post(`devEnv ? REACT_APP_DEV_URL : REACT_APP_PROD_URL`, state);
         toast.success("Added Successfully");
         setState({ name: "", email: "", contact: "", address: "" });
         setTimeout(() => loadUsers(), 500) ;
       }
       else {
-        axios.put(`${api}/${userId}`, state);
+        const devEnv = process.env.NODE_ENV !== "production";
+        const { REACT_APP_DEV_URL, REACT_APP_PROD_URL } = process.env;
+        axios.put(`${devEnv ? REACT_APP_DEV_URL : REACT_APP_PROD_URL}/${userId}`, state);
         toast.success("Updated Successfully");
         setState({ name: "", email: "", contact: "", address: "" });
         setTimeout(() => loadUsers(), 500);
