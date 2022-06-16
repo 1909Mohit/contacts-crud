@@ -5,7 +5,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css"
 import './App.css';
 
-const api = "http://localhost:5000/users";
+// const api = "http://localhost:5000/users";
 
 const initialState = {
   name: "",
@@ -25,10 +25,10 @@ function App() {
   useEffect(() => {
     loadUsers();
   }, [])
-
+     
   const devEnv = process.env.NODE_ENV !== "production";
   const {REACT_APP_DEV_URL, REACT_APP_PROD_URL} = process.env;
-  // const api = devEnv ? REACT_APP_DEV_URL : REACT_APP_PROD_URL;
+  const api = devEnv ? REACT_APP_DEV_URL : REACT_APP_PROD_URL;
   const loadUsers = async () => { 
     const response = await axios.get(api);
     setData(response.data);
