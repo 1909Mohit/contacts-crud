@@ -1,0 +1,18 @@
+{
+  "users": [
+    {
+      "name": "Tom",
+      "address": "London",
+      "email": "tom@gmail.com",
+      "contact": "49646",
+      "id": 1    
+    },
+    {
+      "name": "jkerfnsdiu",
+      "email": "mohit1909.mk@gmail.com",
+      "contact": "963586525423",
+      "address": "Muzaffarnaga",
+      "id": 3
+    }
+  ]
+}
