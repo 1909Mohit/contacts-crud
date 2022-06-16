@@ -26,10 +26,12 @@ function App() {
     loadUsers();
   }, [])
 
+  const devEnv = process.env.NODE_ENV !== "production";
+  const {REACT_APP_DEV_URL, REACT_APP_PROD_URL} = process.env;
+  const api = devEnv ? REACT_APP_DEV_URL : REACT_APP_PROD_URL;
   const loadUsers = async () => {
-    const devEnv = process.env.NODE_ENV !== "production";
-    const { REACT_APP_DEV_URL, REACT_APP_PROD_URL } = process.env;
-    const response = await axios.get(`${devEnv ? REACT_APP_DEV_URL : REACT_APP_PROD_URL}`);
+    
+    const response = await axios.get(api);
     setData(response.data);
   };
 
@@ -40,9 +42,7 @@ function App() {
 
   const handleDelete = async (id) => {
     if (window.confirm("Are you wanted to delete that user ?")) {
-      const devEnv = process.env.NODE_ENV !== "production";
-      const { REACT_APP_DEV_URL, REACT_APP_PROD_URL } = process.env;
-      axios.delete(`${devEnv ? REACT_APP_DEV_URL : REACT_APP_PROD_URL}/${id}`);
+      axios.delete(`${api}/${id}`);
       toast.success("Deleted Successfully");
       setTimeout(() => loadUsers(), 500);
     }
@@ -63,18 +63,13 @@ function App() {
     }
     else {
       if (!editMode) {
-        const devEnv = process.env.NODE_ENV !== "production";
-        const { REACT_APP_DEV_URL, REACT_APP_PROD_URL } = process.env;
-        
-        axios.post(`devEnv ? REACT_APP_DEV_URL : REACT_APP_PROD_URL`, state);
+        axios.post(api, state);
         toast.success("Added Successfully");
         setState({ name: "", email: "", contact: "", address: "" });
         setTimeout(() => loadUsers(), 500) ;
       }
       else {
-        const devEnv = process.env.NODE_ENV !== "production";
-        const { REACT_APP_DEV_URL, REACT_APP_PROD_URL } = process.env;
-        axios.put(`${devEnv ? REACT_APP_DEV_URL : REACT_APP_PROD_URL}/${userId}`, state);
+        axios.put(`${api}/${userId}`, state);
         toast.success("Updated Successfully");
         setState({ name: "", email: "", contact: "", address: "" });
         setTimeout(() => loadUsers(), 500);
@@ -89,7 +84,7 @@ function App() {
       <ToastContainer />
       <Navbar bg='primary' variant='dark' className='justify-content-center'>
         <Navbar.Brand>
-          ye kaam kar raha hai
+          Contacts Store
         </Navbar.Brand>
       </Navbar>
       <Container style={{marginTop:'70px'}}>
