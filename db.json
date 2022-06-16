@@ -8,25 +8,32 @@
       "id": 1
     },
     {
-      "name": "mohit",
-      "email": "mohit1909.mk@gmail.com",
+      "name": "Driba",
+      "email": "Smoothy@gmail.com",
       "contact": "984961565",
-      "address": "Londonretg",
+      "address": "Galvan Prime",
       "id": 2
     },
     {
-      "name": "mohit",
+      "name": "Mohit Kumar",
       "email": "mohit1909.mk@gmail.com",
       "contact": "8979866515",
       "address": "Muzaffarnagar",
       "id": 3
     },
     {
-      "name": "mohit",
-      "email": "vaibhav.vg12@gmail.com",
-      "contact": "122343",
-      "address": "London",
-      "id": 4
+      "name": "Rohit Kumar",
+      "email": "Rohit@gmail.com",
+      "contact": "9012233986",
+      "address": "Muzaffarnagar",
+      "id": 5
+    },
+    {
+      "name": "Blukic",
+      "email": "Smoothy@gmail.com",
+      "contact": "984961565",
+      "address": "Galvan Prime",
+      "id": 6
     }
   ]
 }
